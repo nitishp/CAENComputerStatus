@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">CAEN Computer Status</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="instructional_computers">Available Instructional Computers</string>
+    <string name="research_computers">Available Research Computers</string>
+    <string name="total_computers">Total Computers in Lab</string>
+    <string name="instructional_description">Instructional Computer Icon</string>
+    <string name="research_description">Research Computer Icon</string>
+</resources>
