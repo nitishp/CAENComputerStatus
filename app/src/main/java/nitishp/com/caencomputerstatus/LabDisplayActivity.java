@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.widget.ListView;
@@ -22,6 +23,9 @@ public class LabDisplayActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lab_display);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
+
         Intent intent = getIntent();
         String building = intent.getStringExtra("building");
 
@@ -37,7 +41,7 @@ public class LabDisplayActivity extends AppCompatActivity
             }
 
             ListView listView = (ListView) findViewById(R.id.list_view);
-            listView.setAdapter(new DisplayAdapter(this, buildingData, keys));
+            listView.setAdapter(new DisplayAdapter(this, buildingData, keys, building));
         }
         else
         {

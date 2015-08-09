@@ -17,12 +17,14 @@ public class DisplayAdapter extends BaseAdapter
     private Context mContext;
     private ArrayList<LabData> mLabData;
     private ArrayList<String> mRooms;
+    private String mBuilding;
 
-    public DisplayAdapter(Context c, ArrayList<LabData> labData, ArrayList<String> rooms)
+    public DisplayAdapter(Context c, ArrayList<LabData> labData, ArrayList<String> rooms, String building)
     {
         mContext = c;
         mLabData = labData;
         mRooms = rooms;
+        mBuilding = building;
     }
 
     @Override
@@ -64,9 +66,20 @@ public class DisplayAdapter extends BaseAdapter
         numResearch = (TextView) v.getTag(R.id.research_computers);
         numInstructional = (TextView) v.getTag(R.id.instructional_computers);
 
-        building.setText(mRooms.get(position));
-        numResearch.setText(Integer.toString(data.takenResearch) + " of " + Integer.toString(data.totalResearch));
-        numInstructional.setText(Integer.toString(data.takenInstructional) + " of " + Integer.toString(data.totalInstructional));
+        building.setText(mRooms.get(position) + " " + mBuilding);
+        String researchText = Integer.toString(data.takenResearch) + " of " + Integer.toString(data.totalResearch);
+        if(researchText == "0 of 0")
+        {
+            researchText = "-----";
+        }
+        numResearch.setText(researchText);
+
+        String instructionalText = Integer.toString(data.takenInstructional) + " of " + Integer.toString(data.totalInstructional);
+        if(instructionalText == "0 of 0")
+        {
+            instructionalText = "-----";
+        }
+        numInstructional.setText(instructionalText);
 
         return v;
     }

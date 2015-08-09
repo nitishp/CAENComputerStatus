@@ -5,6 +5,7 @@ import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 
@@ -25,6 +26,10 @@ public class LabSelectorActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lab_selector);
+
+        // Set up the toolbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+        setSupportActionBar(toolbar);
 
         //Set up adapter for the viewpager
         LabSelectorPagerAdapter adapter = new LabSelectorPagerAdapter(getSupportFragmentManager());
