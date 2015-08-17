@@ -3,47 +3,46 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent">
-
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:id="@+id/room"
-        android:gravity="center" />
-
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/instructional"
-            android:layout_gravity="top|center"
-            android:contentDescription="@string/instructional_description"/>
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:gravity="bottom|center"
-            android:id="@+id/instructional_computers"/>
-    </LinearLayout>
+            android:layout_weight="1"
+            android:id="@+id/room"
+            android:gravity="center" />
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="top|center"
-            android:src="@drawable/research"
-            android:contentDescription="@string/research_description"/>
-        <TextView
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:gravity="bottom|center"
-            android:id="@+id/research_computers"/>
-    </LinearLayout>
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/instructional"
+                android:layout_gravity="top|center"
+                android:contentDescription="@string/instructional_description"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom|center"
+                android:id="@+id/instructional_computers"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top|center"
+                android:src="@drawable/research"
+                android:contentDescription="@string/research_description"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="bottom|center"
+                android:id="@+id/research_computers"/>
+        </LinearLayout>
 </LinearLayout>

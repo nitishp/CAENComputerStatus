@@ -25,6 +25,7 @@ public class LabDisplayActivity extends AppCompatActivity
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent intent = getIntent();
         String building = intent.getStringExtra("building");
