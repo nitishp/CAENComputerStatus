@@ -27,6 +27,8 @@ public class LabSelectorActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lab_selector);
 
+        setTitle("Select CAEN Lab");
+
         // Set up the toolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
         setSupportActionBar(toolbar);
