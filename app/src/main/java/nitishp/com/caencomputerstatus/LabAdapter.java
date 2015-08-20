@@ -2,6 +2,8 @@ package nitishp.com.caencomputerstatus;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.media.Image;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,67 +22,19 @@ import java.util.List;
 /**
  * Created by Nitish on 7/9/2015.
  */
-public class LabAdapter extends BaseAdapter
+public class LabAdapter extends RecyclerView.Adapter<LabAdapter.ViewHolder>
 {
     private Context mContext;
-
     private final List<Item> mItems;
 
-    public LabAdapter(Context c, List<Item> items)
-    {
-        mContext = c;
-        mItems = items;
-    }
+    private CentralCampusFragment mCentral;
+    private NorthCampusFragment mNorth;
 
-    @Override
-    public int getCount()
-    {
-        return mItems.size();
-    }
-
-    @Override
-    public Item getItem(int position)
-    {
-        return mItems.get(position);
-    }
-
-    public long getItemId(int position)
-    {
-        return mItems.get(position).id;
-    }
-
-    // create a new ImageView for each item referenced by the Adapter
-    public View getView(int position, View convertView, ViewGroup viewGroup)
-    {
-        View v = convertView;
-        ImageView picture;
-        TextView name;
-
-        if(v == null)
-        {
-            v = LayoutInflater.from(mContext).inflate(R.layout.fragment_grid_item, viewGroup, false);
-            v.setTag(R.id.picture, v.findViewById(R.id.picture));
-            v.setTag(R.id.name, v.findViewById(R.id.name));
-        }
-
-        picture = (ImageView) v.getTag(R.id.picture);
-        name = (TextView) v.getTag(R.id.name);
-
-        Item item = getItem(position);
-
-        name.setText(item.name);
-        Picasso.with(mContext).load(item.id).placeholder(R.drawable.loading).into(picture);
-        return v;
-    }
-
-
-    /*
-    Struct to hold the name of the lab and a picture of it
-     */
+    // Struct to hold the name and picture of the building
     public static class Item
     {
-        public final String name;
-        public final int id;
+        public final String name; // Name of the building
+        public final int id; // ID for picture
 
         public Item(String name, int id)
         {
@@ -88,5 +42,77 @@ public class LabAdapter extends BaseAdapter
             this.id = id;
         }
     }
+
+    // Provide a reference to the views for each data item
+    // Complex data items may need more than one view per item, and
+    // you provide access to all the views for a data item in a view holder
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        // each data item is just a string in this case
+        public TextView mTextView;
+        public ImageView mImageView;
+
+        private CentralCampusFragment central;
+        private NorthCampusFragment north;
+        public ViewHolder(View v, CentralCampusFragment centralIn, NorthCampusFragment northIn)
+        {
+            super(v);
+            mTextView = (TextView) v.findViewById(R.id.name);
+            mImageView = (ImageView) v.findViewById(R.id.picture);
+            central = centralIn;
+            north = northIn;
+            v.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View v)
+        {
+            if(central != null)
+            {
+                central.transition(mTextView.getText().toString());
+            }
+            else
+            {
+                north.transition((mTextView.getText().toString()));
+            }
+        }
+    }
+
+    public LabAdapter(Context context, List<Item> items, CentralCampusFragment central, NorthCampusFragment north)
+    {
+        mContext = context;
+        mItems = items;
+        mCentral = central;
+        mNorth = north;
+    }
+
+    // Create new views (invoked by the layout manager)
+    @Override
+    public LabAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        // create a new view
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.fragment_grid_item, parent, false);
+        ViewHolder vh = new ViewHolder(v, mCentral, mNorth);
+        return vh;
+    }
+
+    // Replace the contents of a view (invoked by the layout manager)
+    @Override
+    public void onBindViewHolder(ViewHolder holder, int position) {
+        // - get element from your dataset at this position
+        // - replace the contents of the view with that element
+        Item item = mItems.get(position);
+        holder.mTextView.setText(item.name);
+        Picasso.with(mContext).load(item.id).into(holder.mImageView);
+    }
+
+    // Return the size of your dataset (invoked by the layout manager)
+    @Override
+    public int getItemCount() {
+        return mItems.size();
+    }
+
+
+
+
+
 
 }

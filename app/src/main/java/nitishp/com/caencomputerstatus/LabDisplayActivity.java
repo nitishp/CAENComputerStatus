@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -41,8 +43,11 @@ public class LabDisplayActivity extends AppCompatActivity
                 keys.add(room);
             }
 
-            ListView listView = (ListView) findViewById(R.id.list_view);
-            listView.setAdapter(new DisplayAdapter(this, buildingData, keys, building));
+            // Set up the recycler view
+            RecyclerView labList = (RecyclerView) findViewById(R.id.list_view);
+            labList.setHasFixedSize(true);
+            labList.setLayoutManager(new LinearLayoutManager(this));
+            labList.setAdapter(new DisplayAdapter(this, buildingData, keys, building));
         }
         else
         {
